@@ -10,23 +10,25 @@ const Container = styled.div`
     background-repeat: no-repeat;
     background-position: center top;
     background-size: 100% 300px;
-    background-color: ${props => props.darkMode ? 'var(--backgroun-Dark)' : 'var(--backgroun-Light)'};
+    background-color: ${props => props.darkMode ? 'var(--background-Dark)' : 'var(--background-Light)'};
+    transition: background-color var(--transition);
     min-height: 100vh;
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding-top: 40px;
+
     h1{
         color: var(--very-Light-Gray);
     }
 `
 
 export default function Home() {
+    const [mode, setMode] = useState(true);
     const maxWidth = '600px'
     return (
-        <Container darkMode={true}>
-            <Header maxWidth={maxWidth} />
-            <Modal maxWidth={maxWidth} />
+        <Container darkMode={mode}>
+            <Header maxWidth={maxWidth} changeMode={() => setMode(!mode)} darkMode={mode} />
+            <Modal maxWidth={maxWidth} darkMode={mode} />
         </Container>
     )
 }

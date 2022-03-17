@@ -1,31 +1,39 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import iconMoon from '../assets/icons/icon-moon.svg'
-import iconSun from '../assets/icons/icon-sun.svg'
+import React, { useState } from "react";
+import styled from "styled-components";
+import iconMoon from "../assets/icons/icon-moon.svg";
+import iconSun from "../assets/icons/icon-sun.svg";
 
 const HeaderContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 22px;
-    width: 100%
-    h1{
-       letter-spacing :15px ;
-    }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 50px 0 60px 0;
 
-    img{
-        height: 40px;
-    }
+  h1 {
+    font-size: 54px;
+    letter-spacing: 21px;
+    font-weight: 700;
+  }
 
-    width: 80%;
-    max-width: ${props => props.maxWidth};
-`
+  img {
+    height: 25px;
+    cursor: pointer;
+  }
+
+  width: 80%;
+  max-width: ${(props) => props.maxWidth};
+`;
 
 export default function Header(props) {
   return (
     <HeaderContainer maxWidth={props.maxWidth}>
-        <h1>TODO</h1>
-        <img src={iconMoon} alt="" srcset="" />
+      <h1>TODO</h1>
+      <img
+        src={props.darkMode ? iconMoon : iconSun}
+        alt=""
+        onClick={props.changeMode}
+      />
     </HeaderContainer>
-  )
+  );
 }
