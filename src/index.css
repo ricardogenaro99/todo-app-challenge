@@ -1,13 +1,31 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --bright-Blue: hsl(220, 98%, 61%);
+  --check-Background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
+
+  /* Light Theme */
+  
+  --very-Light-Gray: hsl(0, 0%, 98%);
+  --very-Light-Grayish-Blue: hsl(236, 33%, 92%);
+  --light-Grayish-Blue: hsl(233, 11%, 84%);
+  --dark-Grayish-Blue: hsl(236, 9%, 61%);
+  --very-Dark-Grayish-Blue: hsl(235, 19%, 35%);
+  
+
+  --backgroun-Light: hsl(0, 0%, 98%);
+  --backgroun-Dark: hsl(235, 21%, 11%);
+  /* Dark Theme */
+  --very-Dark-Blue: hsl(235, 21%, 11%);
+  --very-Dark-Desaturated-Blue: hsl(235, 24%, 19%);
+  --light-Grayish-Blue: hsl(234, 39%, 85%);
+  --light-Grayish-Blue-hover: hsl(236, 33%, 92%);
+  --dark-Grayish-Blue: hsl(234, 11%, 52%);
+  --very-Dark-Grayish-Blue: hsl(233, 14%, 35%);
+  /* --very-Dark-Grayish-Blue: hsl(237, 14%, 26%); */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  font-family: "Josefin Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
