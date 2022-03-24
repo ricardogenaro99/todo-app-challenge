@@ -16,7 +16,6 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
-
     h1{
         color: var(--very-Light-Gray);
     }

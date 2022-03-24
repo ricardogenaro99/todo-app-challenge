@@ -9,7 +9,6 @@ const ModalContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 40px;
-
     >form,>div{
         background-color: ${props => props.darkMode ? 'var(--background-Form-Dark)' : 'var(--background-Form-Light)'}; 
         transition: background-color var(--transition);
@@ -17,7 +16,6 @@ const ModalContainer = styled.div`
         -webkit-box-shadow: 0px 6px 19px -7px rgba(0,0,0,0.65); 
         box-shadow: 0px 6px 19px -7px rgba(0,0,0,0.65);
     }
-
     >form{
         >input{
             border: none;
@@ -26,7 +24,6 @@ const ModalContainer = styled.div`
             width: 100%;
         }
     }
-
     >form, .task{
         display: flex;
         align-items: center;
@@ -34,20 +31,26 @@ const ModalContainer = styled.div`
         padding-left: 25px;
         padding-right: 25px;
     }
-
-    input,.task, .filter, >p{
+    input,.task, .filter, >p, .portFolioRef{
         color: ${props => props.darkMode ? 'var(--color-Text-Dark)' : 'var(--color-Text-Ligth)'};
         transition: color var(--transition);
         padding-top: 18px;
         padding-bottom: 18px;
     }
-
     >p{
-        opacity: .35;
-        text-align: center;
-        font-size: .95rem;
+        opacity: .40;
+        font-size: .90rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
     }
-    
+    .portFolioRef{
+        :hover{
+            color:  ${props => props.darkMode ? '#fff' : '#333'};
+        }
+    }
 `
 
 export default function Modal(props) {
@@ -88,10 +91,14 @@ export default function Modal(props) {
                     {tasks.map((task) => <Task key={task._id} done={task.done} darkMode={props.darkMode} content={task.content} click={() => clickTask(task)} />)}
                 </section>
                 <section>
-                    <Filter left={leftTasks()} clearCompleted={clearDoneTasks}/>
+                    <Filter left={leftTasks()} clearCompleted={clearDoneTasks} />
                 </section>
             </div>
-            <p>Drag and drop to reorder list</p>
+            <p>
+                <span>Drag and drop to reorder list</span>
+                <span>Designed by <b>Frontend Mentor</b>  
+                and developed by <b><a href="https://www.instagram.com/ricardogenaro99/" className='portFolioRef' target="_blank" rel="noopener noreferrer">Ricardo Genaro</a></b></span>
+            </p>
         </ModalContainer>
     )
 }

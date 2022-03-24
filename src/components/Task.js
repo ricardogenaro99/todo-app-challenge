@@ -3,14 +3,12 @@ import styled from 'styled-components';
 import check from '../assets/icons/icon-check.svg'
 
 const DivStyled = styled.div`
-
     p{
         overflow-x: auto;  
         text-decoration:${props => props.done ? 'line-through' : 'none'} ;
         opacity:${props => props.done ? '.4' : '1'} ;
         transition: text-decoration var(--transition), opacity var(--transition);
     }
-
     border-bottom: 2px solid ${props => props.darkMode ? 'var(--border-Dark)' : 'var(--border-Ligth)'} ;
     transition: border-bottom var(--transition);
 `
@@ -39,7 +37,6 @@ const Span = styled.span`
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    
 `
 
 export function RadioButton(props) {
