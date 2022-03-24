@@ -6,6 +6,9 @@ const DivStyled = styled.div`
 
     p{
         overflow-x: auto;  
+        text-decoration:${props => props.done ? 'line-through' : 'none'} ;
+        opacity:${props => props.done ? '.4' : '1'} ;
+        transition: text-decoration var(--transition), opacity var(--transition);
     }
 
     border-bottom: 2px solid ${props => props.darkMode ? 'var(--border-Dark)' : 'var(--border-Ligth)'} ;
@@ -14,8 +17,8 @@ const DivStyled = styled.div`
 
 export function Task(props) {
     return (
-        <DivStyled darkMode={props.darkMode} className='task'>
-            <span><RadioButton darkMode={props.darkMode} done={props.done} /></span>
+        <DivStyled darkMode={props.darkMode} done={props.done} className='task'>
+            <span><RadioButton click={props.click} darkMode={props.darkMode} done={props.done} /></span>
             <p>
                 {props.content}
             </p>
@@ -29,9 +32,9 @@ const Span = styled.span`
     max-width: 22px;
     max-height: 22px;
     border-radius: 100%;
-    background-color: ${props => props.done ? 'var(--check-Background)' : 'transparent'};
+    background: ${props => props.done ? 'var(--check-Background)' : 'transparent'};
     border: 2px solid ${props => props.darkMode ? 'var(--border-Dark)' : 'var(--border-Ligth)'} ;
-    transition: background-color var(--transition), border var(--transition);
+    transition: background var(--transition), border var(--transition);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,6 +44,6 @@ const Span = styled.span`
 
 export function RadioButton(props) {
     return (
-        <Span done={props.done} darkMode={props.darkMode} >{props.done && (<img src={check} alt="" srcset="" />)}</Span>
+        <Span onClick={props.click} done={props.done} darkMode={props.darkMode} >{props.done && (<img src={check} alt="" />)}</Span>
     )
 }

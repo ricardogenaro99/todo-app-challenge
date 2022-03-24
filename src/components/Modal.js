@@ -35,11 +35,17 @@ const ModalContainer = styled.div`
         padding-right: 25px;
     }
 
-    input,.task, .filter{
+    input,.task, .filter, >p{
         color: ${props => props.darkMode ? 'var(--color-Text-Dark)' : 'var(--color-Text-Ligth)'};
         transition: color var(--transition);
         padding-top: 18px;
         padding-bottom: 18px;
+    }
+
+    >p{
+        opacity: .35;
+        text-align: center;
+        font-size: .95rem;
     }
     
 `
@@ -54,25 +60,38 @@ export default function Modal(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setTask([...tasks, { '_id': tasks.length, done: false, content: valueInput }]);
+        setTask([...tasks, { '_id': tasks.length, 'done': false, 'content': valueInput }]);
         setValueInput('');
+    }
+
+    const clickTask = (task) => {
+        const tmp = tasks.filter(e => e._id !== task._id)
+        setTask([...tmp, { '_id': task._id, 'done': !task.done, 'content': task.content }]);
+    }
+
+    const leftTasks = () => {
+        return tasks.filter(e => e.done === false).length
+    }
+
+    const clearDoneTasks = () => {
+        setTask(tasks.filter(e => e.done === false));
     }
 
     return (
         <ModalContainer darkMode={props.darkMode} maxWidth={props.maxWidth}>
             <form action="" onSubmit={handleSubmit}>
-                <RadioButton darkMode={props.darkMode} />
+                <RadioButton darkMode={props.darkMode} click={handleSubmit} />
                 <input type="text" value={valueInput} onChange={handleInput} />
             </form>
             <div>
                 <section>
-                    {tasks.map((task) => <Task key={task._id} done={task.done} darkMode={props.darkMode} content={task.content} />)}
+                    {tasks.map((task) => <Task key={task._id} done={task.done} darkMode={props.darkMode} content={task.content} click={() => clickTask(task)} />)}
                 </section>
                 <section>
-                    <Filter />
+                    <Filter left={leftTasks()} clearCompleted={clearDoneTasks}/>
                 </section>
             </div>
-
+            <p>Drag and drop to reorder list</p>
         </ModalContainer>
     )
 }

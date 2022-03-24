@@ -56,7 +56,7 @@ export default function Filter(props) {
                 <span>Completed</span>
             </div>
             <div className='filter'>
-                <span>Clear Completed</span>
+                <span onClick={props.clearCompleted}>Clear Completed</span>
             </div>
         </FilterStyled>
     )
