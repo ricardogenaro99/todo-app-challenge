@@ -50,6 +50,7 @@ const ModalContainer = styled.div`
         :hover{
             color:  ${props => props.darkMode ? '#fff' : '#333'};
         }
+        padding: 0;
     }
 `
 
@@ -95,9 +96,10 @@ export default function Modal(props) {
                 </section>
             </div>
             <p>
-                <span>Drag and drop to reorder list</span>
-                <span>Designed by <b>Frontend Mentor</b>  
-                and developed by <b><a href="https://www.instagram.com/ricardogenaro99/" className='portFolioRef' target="_blank" rel="noopener noreferrer">Ricardo Genaro</a></b></span>
+                <span>Challenge by <b>Frontend Mentor</b></span>
+                <span>
+                    Coded by <b><a href="https://www.instagram.com/ricardogenaro99/" className='portFolioRef' target="_blank" rel="noopener noreferrer">Ricardo Genaro</a></b>
+                </span>
             </p>
         </ModalContainer>
     )
