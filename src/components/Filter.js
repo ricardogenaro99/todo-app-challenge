@@ -51,9 +51,9 @@ export default function Filter(props) {
                 <span>{`${props.left} items left`}</span>
             </div>
             <div className='filter'>
-                <span>All</span>
-                <span>Active</span>
-                <span>Completed</span>
+                <span onClick={props.clickAll}>All</span>
+                <span onClick={props.clickActivated}>Active</span>
+                <span onClick={props.clickCompleted}>Completed</span>
             </div>
             <div className='filter'>
                 <span onClick={props.clearCompleted}>Clear Completed</span>

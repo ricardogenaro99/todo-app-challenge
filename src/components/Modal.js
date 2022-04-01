@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Filter from './Filter';
 import { RadioButton, Task } from './Task';
+import useLocalStorage from '../customs/useLocalStorage'
+import { v4 as uuidv4 } from 'uuid';
 
 const ModalContainer = styled.div`
     width: 80%;
@@ -56,7 +58,9 @@ const ModalContainer = styled.div`
 
 export default function Modal(props) {
     const [valueInput, setValueInput] = useState('');
-    const [tasks, setTask] = useState([])
+    const [tasks, setTask] = useLocalStorage('tasks', [])
+    const [activatedFilter, setActivatedFilter] = useState(true)
+    const [completedFilter, setCompletedFilter] = useState(true)
 
     const handleInput = (e) => {
         setValueInput(e.target.value)
@@ -64,7 +68,7 @@ export default function Modal(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setTask([...tasks, { '_id': tasks.length, 'done': false, 'content': valueInput }]);
+        setTask([...tasks, { '_id': uuidv4(), 'done': false, 'content': valueInput }]);
         setValueInput('');
     }
 
@@ -81,6 +85,23 @@ export default function Modal(props) {
         setTask(tasks.filter(e => e.done === false));
     }
 
+    const clickAll = () => {
+        setActivatedFilter(true);
+        setCompletedFilter(true);
+    }
+
+    const clickActivated = () => {
+        setActivatedFilter(true);
+        setCompletedFilter(false);
+    }
+
+    const clickCompleted = () => {
+        setActivatedFilter(false);
+        setCompletedFilter(true);
+    }
+
+
+
     return (
         <ModalContainer darkMode={props.darkMode} maxWidth={props.maxWidth}>
             <form action="" onSubmit={handleSubmit}>
@@ -89,10 +110,20 @@ export default function Modal(props) {
             </form>
             <div>
                 <section>
-                    {tasks.map((task) => <Task key={task._id} done={task.done} darkMode={props.darkMode} content={task.content} click={() => clickTask(task)} />)}
+                    {tasks.map((task) => {
+                        if (activatedFilter && completedFilter) {
+                            return <Task key={task._id} done={task.done} darkMode={props.darkMode} content={task.content} click={() => clickTask(task)} />
+                        }
+                        if (activatedFilter && !task.done) {
+                            return <Task key={task._id} done={task.done} darkMode={props.darkMode} content={task.content} click={() => clickTask(task)} />
+                        }
+                        if (completedFilter && task.done) {
+                            return <Task key={task._id} done={task.done} darkMode={props.darkMode} content={task.content} click={() => clickTask(task)} />
+                        }
+                    })}
                 </section>
                 <section>
-                    <Filter left={leftTasks()} clearCompleted={clearDoneTasks} />
+                    <Filter left={leftTasks()} clearCompleted={clearDoneTasks} clickAll={clickAll} clickActivated={clickActivated} clickCompleted={clickCompleted} />
                 </section>
             </div>
             <p>
