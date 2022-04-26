@@ -16,6 +16,7 @@ const HeaderContainer = styled.div`
 	}
 	img {
 		height: 25px;
+		width: 25px;
 		cursor: pointer;
 	}
 	width: 80%;
@@ -28,7 +29,7 @@ export default function Header(props) {
 			<h1>TODO</h1>
 			<img
 				src={props.darkMode ? iconMoon : iconSun}
-				alt=""
+				alt="change-theme"
 				onClick={props.changeMode}
 			/>
 		</HeaderContainer>

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import darkBackground from '../assets/images/bg-desktop-dark.jpg';
-import lightBackground from '../assets/images/bg-desktop-light.jpg';
+import darkBackground from '../assets/images/bg-desktop-dark.webp';
+import lightBackground from '../assets/images/bg-desktop-light.webp';
+import darkBackgroundMobile from '../assets/images/bg-mobile-dark.webp';
+import lightBackgroundMobile from '../assets/images/bg-mobile-light.webp';
 import Header from '../components/Header';
 import Modal from '../components/Modal';
 
@@ -19,6 +21,9 @@ const Container = styled.div`
     h1{
         color: var(--very-Light-Gray);
     }
+    @media (max-width: 500px) {
+		background-image: url(${props => props.darkMode ? darkBackgroundMobile : lightBackgroundMobile});
+	}
 `
 
 export default function Home() {
